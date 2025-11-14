@@ -8,7 +8,6 @@ OUTPUT_JSON = "../data/raw_extracted.json"
 def extract_from_pdfs():
     extracted_data = []
 
-    # ✅ Step 1: Check if folder exists and has PDFs
     if not os.path.exists(PDF_DIR):
         os.makedirs(PDF_DIR)
         print("📂 Created missing raw_pdfs folder. Please add some PDF files.")
@@ -19,12 +18,10 @@ def extract_from_pdfs():
         print("⚠️ No PDF files found in ../data/raw_pdfs/. Please run fetch_pdfs.py first.")
         return
 
-    # ✅ Step 2: Remove old extraction file
     if os.path.exists(OUTPUT_JSON):
         os.remove(OUTPUT_JSON)
         print("🧹 Old extraction file removed.\n")
 
-    # ✅ Step 3: Extract text and metadata from PDFs
     for pdf_file in pdf_files:
         pdf_path = os.path.join(PDF_DIR, pdf_file)
         try:
@@ -50,7 +47,6 @@ def extract_from_pdfs():
         except Exception as e:
             print(f"⚠️ Error reading {pdf_file}: {e}")
 
-    # ✅ Step 4: Save the extracted data
     with open(OUTPUT_JSON, "w", encoding="utf-8") as f:
         json.dump(extracted_data, f, indent=4, ensure_ascii=False)
     print(f"\n✅ Extracted data saved to {OUTPUT_JSON}")

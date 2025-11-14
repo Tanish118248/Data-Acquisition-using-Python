@@ -82,7 +82,7 @@ def run_pipeline():
 
 root = tk.Tk()
 root.title("📚 AI-Based PDF Data Acquisition")
-root.geometry("720x700")
+root.geometry("720x900")
 root.configure(bg="#E8EAF6")
 
 header = tk.Frame(root, bg="#3F51B5", height=80)

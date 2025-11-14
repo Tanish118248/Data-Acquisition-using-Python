@@ -2,20 +2,18 @@ import os
 import requests
 from tqdm import tqdm
 import sys
-import shutil
 
 DATA_DIR = "../data/raw_pdfs"
 os.makedirs(DATA_DIR, exist_ok=True)
 
 def clear_old_pdfs():
-    # Delete all previously downloaded PDFs before fetching new ones
     for file in os.listdir(DATA_DIR):
         if file.endswith(".pdf"):
             os.remove(os.path.join(DATA_DIR, file))
     print("🧹 Cleared old PDFs before downloading new ones.\n")
 
 def download_pdfs(urls):
-    clear_old_pdfs()  # <--- add this line
+    clear_old_pdfs() 
     for url in tqdm(urls, desc="Downloading PDFs"):
         filename = os.path.join(DATA_DIR, os.path.basename(url))
         try:
